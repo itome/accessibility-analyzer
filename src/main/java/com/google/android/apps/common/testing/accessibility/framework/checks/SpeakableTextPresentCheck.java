@@ -16,9 +16,6 @@ package com.google.android.apps.common.testing.accessibility.framework.checks;
 
 import static java.lang.Boolean.TRUE;
 
-import android.support.annotation.Nullable;
-import android.webkit.WebView;
-import com.google.android.apps.common.testing.accessibility.framework.AccessibilityCheck.Category;
 import com.google.android.apps.common.testing.accessibility.framework.AccessibilityCheckResult.AccessibilityCheckResultType;
 import com.google.android.apps.common.testing.accessibility.framework.AccessibilityHierarchyCheck;
 import com.google.android.apps.common.testing.accessibility.framework.AccessibilityHierarchyCheckResult;
@@ -33,123 +30,125 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import javax.annotation.Nullable;
+
 /**
  * Checks that items that require speakable text have some. Does not check if the text makes sense.
  */
 public class SpeakableTextPresentCheck extends AccessibilityHierarchyCheck {
 
-  /** Result when thew view is not visible. */
-  public static final int RESULT_ID_NOT_VISIBLE = 1;
-  /** Result when the view is not {@code importantForAccessibility}. */
-  public static final int RESULT_ID_NOT_IMPORTANT_FOR_ACCESSIBILITY = 2;
-  /** Result when the view should not be focused by a screen reader. */
-  public static final int RESULT_ID_SHOULD_NOT_FOCUS = 3;
-  /** Result when the view is missing speakable text. */
-  public static final int RESULT_ID_MISSING_SPEAKABLE_TEXT = 4;
-  /** Result when the view type is excluded. */
-  public static final int RESULT_ID_WEB_CONTENT = 5;
+    /** Result when thew view is not visible. */
+    public static final int RESULT_ID_NOT_VISIBLE = 1;
+    /** Result when the view is not {@code importantForAccessibility}. */
+    public static final int RESULT_ID_NOT_IMPORTANT_FOR_ACCESSIBILITY = 2;
+    /** Result when the view should not be focused by a screen reader. */
+    public static final int RESULT_ID_SHOULD_NOT_FOCUS = 3;
+    /** Result when the view is missing speakable text. */
+    public static final int RESULT_ID_MISSING_SPEAKABLE_TEXT = 4;
+    /** Result when the view type is excluded. */
+    public static final int RESULT_ID_WEB_CONTENT = 5;
 
-  @Override
-  protected String getHelpTopic() {
-    return "7158690"; // Content labels
-  }
-
-  @Override
-  public Category getCategory() {
-    return Category.CONTENT_LABELING;
-  }
-
-  @Override
-  public List<AccessibilityHierarchyCheckResult> runCheckOnHierarchy(
-      AccessibilityHierarchy hierarchy,
-      @Nullable ViewHierarchyElement fromRoot,
-      @Nullable Metadata metadata) {
-    List<AccessibilityHierarchyCheckResult> results = new ArrayList<>();
-    List<ViewHierarchyElement> viewsToEval = getElementsToEvaluate(fromRoot, hierarchy);
-    for (ViewHierarchyElement element : viewsToEval) {
-      if (!TRUE.equals(element.isVisibleToUser())) {
-        results.add(new AccessibilityHierarchyCheckResult(
-            this.getClass(),
-            AccessibilityCheckResultType.NOT_RUN,
-            element,
-            RESULT_ID_NOT_VISIBLE,
-            null));
-        continue;
-      }
-
-      if (!element.isImportantForAccessibility()) {
-        results.add(new AccessibilityHierarchyCheckResult(
-            this.getClass(),
-            AccessibilityCheckResultType.NOT_RUN,
-            element,
-            RESULT_ID_NOT_IMPORTANT_FOR_ACCESSIBILITY,
-            null));
-        continue;
-      }
-
-      if (TRUE.equals(element.checkInstanceOf(WebView.class)) && element.getChildViewCount() == 0) {
-        results.add(new AccessibilityHierarchyCheckResult(
-            this.getClass(),
-            AccessibilityCheckResultType.NOT_RUN,
-            element,
-            RESULT_ID_WEB_CONTENT,
-            null));
-        continue;
-      }
-
-      if (!ViewHierarchyElementUtils.shouldFocusView(element)) {
-        results.add(new AccessibilityHierarchyCheckResult(
-            this.getClass(),
-            AccessibilityCheckResultType.NOT_RUN,
-            element,
-            RESULT_ID_SHOULD_NOT_FOCUS,
-            null));
-        continue;
-      }
-
-      if (TextUtils.isEmpty(ViewHierarchyElementUtils.getSpeakableTextForElement(element))) {
-        results.add(new AccessibilityHierarchyCheckResult(
-            this.getClass(),
-            AccessibilityCheckResultType.ERROR,
-            element,
-            RESULT_ID_MISSING_SPEAKABLE_TEXT,
-            null));
-      }
+    @Override
+    protected String getHelpTopic() {
+        return "7158690"; // Content labels
     }
-    return results;
-  }
 
-  @Override
-  public String getMessageForResultData(
-      Locale locale, int resultId, @Nullable ResultMetadata metadata) {
-    return generateMessageForResultId(locale, resultId);
-  }
-
-  @Override
-  public String getShortMessageForResultData(
-      Locale locale, int resultId, @Nullable ResultMetadata metadata) {
-    return generateMessageForResultId(locale, resultId);
-  }
-
-  @Override
-  public String getTitleMessage(Locale locale) {
-    return StringManager.getString(locale, "check_title_speakable_text_present");
-  }
-
-  private static String generateMessageForResultId(Locale locale, int resultId) {
-    switch(resultId) {
-      case RESULT_ID_NOT_VISIBLE:
-        return StringManager.getString(locale, "result_message_not_visible");
-      case RESULT_ID_NOT_IMPORTANT_FOR_ACCESSIBILITY:
-        return StringManager.getString(locale, "result_message_not_important_for_accessibility");
-      case RESULT_ID_SHOULD_NOT_FOCUS:
-        return StringManager.getString(locale, "result_message_should_not_focus");
-      case RESULT_ID_MISSING_SPEAKABLE_TEXT:
-        return StringManager.getString(locale, "result_message_missing_speakable_text");
-      case RESULT_ID_WEB_CONTENT:
-        return StringManager.getString(locale, "result_message_web_content");
-      default:
-        throw new IllegalStateException("Unsupported result id");
+    @Override
+    public Category getCategory() {
+        return Category.CONTENT_LABELING;
     }
-  }
+
+    @Override
+    public List<AccessibilityHierarchyCheckResult> runCheckOnHierarchy(
+            AccessibilityHierarchy hierarchy,
+            @Nullable ViewHierarchyElement fromRoot,
+            @Nullable Metadata metadata) {
+        List<AccessibilityHierarchyCheckResult> results = new ArrayList<>();
+        List<ViewHierarchyElement> viewsToEval = getElementsToEvaluate(fromRoot, hierarchy);
+        for (ViewHierarchyElement element : viewsToEval) {
+            if (!TRUE.equals(element.isVisibleToUser())) {
+                results.add(new AccessibilityHierarchyCheckResult(
+                        this.getClass(),
+                        AccessibilityCheckResultType.NOT_RUN,
+                        element,
+                        RESULT_ID_NOT_VISIBLE,
+                        null));
+                continue;
+            }
+
+            if (!element.isImportantForAccessibility()) {
+                results.add(new AccessibilityHierarchyCheckResult(
+                        this.getClass(),
+                        AccessibilityCheckResultType.NOT_RUN,
+                        element,
+                        RESULT_ID_NOT_IMPORTANT_FOR_ACCESSIBILITY,
+                        null));
+                continue;
+            }
+
+            if (TRUE.equals(element.isWebView()) && element.getChildViewCount() == 0) {
+                results.add(new AccessibilityHierarchyCheckResult(
+                        this.getClass(),
+                        AccessibilityCheckResultType.NOT_RUN,
+                        element,
+                        RESULT_ID_WEB_CONTENT,
+                        null));
+                continue;
+            }
+
+            if (!ViewHierarchyElementUtils.shouldFocusView(element)) {
+                results.add(new AccessibilityHierarchyCheckResult(
+                        this.getClass(),
+                        AccessibilityCheckResultType.NOT_RUN,
+                        element,
+                        RESULT_ID_SHOULD_NOT_FOCUS,
+                        null));
+                continue;
+            }
+
+            if (TextUtils.isEmpty(ViewHierarchyElementUtils.getSpeakableTextForElement(element))) {
+                results.add(new AccessibilityHierarchyCheckResult(
+                        this.getClass(),
+                        AccessibilityCheckResultType.ERROR,
+                        element,
+                        RESULT_ID_MISSING_SPEAKABLE_TEXT,
+                        null));
+            }
+        }
+        return results;
+    }
+
+    @Override
+    public String getMessageForResultData(
+            Locale locale, int resultId, @Nullable ResultMetadata metadata) {
+        return generateMessageForResultId(locale, resultId);
+    }
+
+    @Override
+    public String getShortMessageForResultData(
+            Locale locale, int resultId, @Nullable ResultMetadata metadata) {
+        return generateMessageForResultId(locale, resultId);
+    }
+
+    @Override
+    public String getTitleMessage(Locale locale) {
+        return StringManager.getString(locale, "check_title_speakable_text_present");
+    }
+
+    private static String generateMessageForResultId(Locale locale, int resultId) {
+        switch(resultId) {
+            case RESULT_ID_NOT_VISIBLE:
+                return StringManager.getString(locale, "result_message_not_visible");
+            case RESULT_ID_NOT_IMPORTANT_FOR_ACCESSIBILITY:
+                return StringManager.getString(locale, "result_message_not_important_for_accessibility");
+            case RESULT_ID_SHOULD_NOT_FOCUS:
+                return StringManager.getString(locale, "result_message_should_not_focus");
+            case RESULT_ID_MISSING_SPEAKABLE_TEXT:
+                return StringManager.getString(locale, "result_message_missing_speakable_text");
+            case RESULT_ID_WEB_CONTENT:
+                return StringManager.getString(locale, "result_message_web_content");
+            default:
+                throw new IllegalStateException("Unsupported result id");
+        }
+    }
 }

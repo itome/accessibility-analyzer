@@ -1,7 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a4fb5f02-27f9-439b-914b-389017d9f60b" name="Default Changelist" comment="" />
+    <list default="true" id="a4fb5f02-27f9-439b-914b-389017d9f60b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/AccessibilityCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/AccessibilityCheckMetadata.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/AccessibilityCheckPreset.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/AccessibilityCheckResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/AccessibilityCheckResultUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/AccessibilityEventCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/AccessibilityEventCheckResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/AccessibilityHierarchyCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/AccessibilityHierarchyCheckResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/AccessibilityInfoCheckResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/AccessibilityInfoHierarchyCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/AccessibilityViewCheckResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/AccessibilityViewHierarchyCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/AnnouncementEventCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/ClickableSpanInfoCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/ClickableSpanViewCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/ClusteringUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/ContrastInfoCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/DuplicateClickableBoundsInfoCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/DuplicateClickableBoundsViewCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/DuplicateSpeakableTextViewHierarchyCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/EditableContentDescInfoCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/EditableContentDescViewCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/Metadata.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/RedundantContentDescInfoCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/RedundantContentDescViewCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/ResultMetadata.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/SpeakableTextPresentInfoCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/SpeakableTextPresentViewCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/TextContrastViewCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/TouchTargetSizeInfoCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/TouchTargetSizeViewCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/ViewAccessibilityUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/ViewHierarchyElementUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/checks/ClassNameCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/checks/ClickableSpanCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/checks/DuplicateClickableBoundsCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/checks/DuplicateSpeakableTextCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/checks/EditableContentDescCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/checks/ImageContrastCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/checks/RedundantDescriptionCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/checks/SpeakableTextPresentCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/checks/TextContrastCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/checks/TouchTargetSizeCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/checks/TraversalOrderCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/replacements/Point.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/replacements/Rect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/replacements/Replaceable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/replacements/Span.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/replacements/SpannableString.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/replacements/SpannableStringBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/replacements/Spans.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/replacements/TextUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/replacements/Uri.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/strings/AndroidXMLResourceBundle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/strings/StringManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/uielement/AccessibilityHierarchy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/uielement/DeviceState.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/uielement/DisplayInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/uielement/ParcelUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/uielement/ViewHierarchyElement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/uielement/WindowHierarchyElement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/googlecode/eyesfree/compat/CompatUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/googlecode/eyesfree/compat/view/SurfaceControlCompatUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/googlecode/eyesfree/utils/AccessibilityNodeInfoRef.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/googlecode/eyesfree/utils/AccessibilityNodeInfoUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/googlecode/eyesfree/utils/BasePackageMonitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/googlecode/eyesfree/utils/ClassLoadingManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/googlecode/eyesfree/utils/ContrastSwatch.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/googlecode/eyesfree/utils/ContrastUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/googlecode/eyesfree/utils/LogUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/googlecode/eyesfree/utils/NodeFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/googlecode/eyesfree/utils/NodeFocusFinder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/googlecode/eyesfree/utils/ScreenshotUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/googlecode/eyesfree/utils/WebInterfaceUtils.java" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,13 +129,35 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1Q5Fe7AlYwagRDpFEz7jdNfGBe2" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
@@ -114,11 +217,26 @@
       <option name="presentableId" value="Default" />
       <updated>1567052642580</updated>
       <workItem from="1567052651773" duration="101000" />
-      <workItem from="1567052779481" duration="964000" />
+      <workItem from="1567052779481" duration="5538000" />
+      <workItem from="1567059468830" duration="4783000" />
+      <workItem from="1567069371926" duration="4597000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

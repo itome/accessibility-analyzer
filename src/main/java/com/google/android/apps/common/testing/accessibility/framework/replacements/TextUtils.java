@@ -14,51 +14,52 @@
 
 package com.google.android.apps.common.testing.accessibility.framework.replacements;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import org.checkerframework.checker.nullness.qual.EnsuresNonNullIf;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
-/** Used as a local replacement for Android's {@link android.text.TextUtils} */
+import javax.annotation.Nullable;
+
+/** Used as a local replacement for Android's {link android.text.TextUtils} */
 public class TextUtils {
-  private TextUtils() {
-    // Not instantiable
-  }
-
-  /**
-   * @see android.text.TextUtils#isEmpty(CharSequence)
-   */
-  @EnsuresNonNullIf(expression = "#1", result = false)
-  public static boolean isEmpty(@Nullable CharSequence str) {
-    return (str == null) || (str.length() == 0);
-  }
-
-  /**
-   * @see android.text.TextUtils#getTrimmedLength(CharSequence)
-   */
-  public static int getTrimmedLength(@NonNull CharSequence str) {
-    return str.toString().trim().length();
-  }
-
-  /**
-   * @see android.text.TextUtils#equals(CharSequence, CharSequence)
-   */
-  public static boolean equals(CharSequence s1, CharSequence s2) {
-    if (s1 == s2) {
-      return true;
+    private TextUtils() {
+        // Not instantiable
     }
 
-    if ((s1 != null) && (s2 != null) && (s1.length() == s2.length())) {
-      if (s1 instanceof String && s2 instanceof String) {
-        return s1.equals(s2);
-      } else {
-        for (int i = 0; i < s1.length(); i++) {
-          if (s1.charAt(i) != s2.charAt(i)) {
-            return false;
-          }
+    /**
+     * see android.text.TextUtils#isEmpty(CharSequence)
+     */
+    @EnsuresNonNullIf(expression = "#1", result = false)
+    public static boolean isEmpty(@Nullable CharSequence str) {
+        return (str == null) || (str.length() == 0);
+    }
+
+    /**
+     * see android.text.TextUtils#getTrimmedLength(CharSequence)
+     */
+    public static int getTrimmedLength(@NonNull CharSequence str) {
+        return str.toString().trim().length();
+    }
+
+    /**
+     * see android.text.TextUtils#equals(CharSequence, CharSequence)
+     */
+    public static boolean equals(CharSequence s1, CharSequence s2) {
+        if (s1 == s2) {
+            return true;
         }
-        return true;
-      }
+
+        if ((s1 != null) && (s2 != null) && (s1.length() == s2.length())) {
+            if (s1 instanceof String && s2 instanceof String) {
+                return s1.equals(s2);
+            } else {
+                for (int i = 0; i < s1.length(); i++) {
+                    if (s1.charAt(i) != s2.charAt(i)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
     }
-    return false;
-  }
 }

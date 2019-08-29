@@ -17,12 +17,8 @@ package com.google.android.apps.common.testing.accessibility.framework.uielement
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import android.content.Context;
-import android.os.Build;
-import android.os.Parcel;
-import android.support.annotation.VisibleForTesting;
-import android.view.WindowManager;
 import com.google.android.apps.common.testing.accessibility.framework.uielement.proto.AccessibilityHierarchyProtos.DeviceStateProto;
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Splitter;
 import java.util.List;
 import java.util.Locale;
@@ -36,117 +32,83 @@ import java.util.Locale;
  */
 public class DeviceState {
 
-  private static final Splitter HYPHEN_SPLITTER = Splitter.on('-');
+    private static final Splitter HYPHEN_SPLITTER = Splitter.on('-');
 
-  /** @see WindowManager#getDefaultDisplay() */
-  private final DisplayInfo defaultDisplayInfo;
+    private final DisplayInfo defaultDisplayInfo;
 
-  /** @see Build.VERSION#SDK_INT */
-  private final int sdkVersion;
+    private final int sdkVersion;
 
-  private final Locale locale;
+    private final Locale locale;
 
-  /**
-   * Creates a record of the device state at the time of construction.
-   *
-   * @param context The {@link Context} used to resolve properties of device state.
-   */
-  public DeviceState(Context context) {
-    WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-    defaultDisplayInfo = new DisplayInfo(wm.getDefaultDisplay());
-    sdkVersion = Build.VERSION.SDK_INT;
-    locale = Locale.getDefault();
-  }
-
-  DeviceState(Parcel fromParcel) {
-    defaultDisplayInfo = new DisplayInfo(fromParcel);
-    sdkVersion = fromParcel.readInt();
-    locale = getLocaleFromLanguageTag(checkNotNull(fromParcel.readString()));
-  }
-
-  DeviceState(DeviceStateProto fromProto) {
-    sdkVersion = fromProto.getSdkVersion();
-    defaultDisplayInfo = new DisplayInfo(fromProto.getDefaultDisplayInfo());
-    String languageTag = fromProto.getLocale();
-    // Use the default Locale if no locale was recorded in the proto.
-    // This is for backward compatibility.
-    locale = languageTag.isEmpty() ? Locale.getDefault() : getLocaleFromLanguageTag(languageTag);
-  }
-
-  /**
-   * @see WindowManager#getDefaultDisplay()
-   */
-  public DisplayInfo getDefaultDisplayInfo() {
-    return defaultDisplayInfo;
-  }
-
-  /** @see Build.VERSION#SDK_INT */
-  public int getSdkVersion() {
-    return sdkVersion;
-  }
-
-  /** Gets the locale at the time the device state was captured. */
-  public Locale getLocale() {
-    return locale;
-  }
-
-  void writeToParcel(Parcel out, int flags) {
-    defaultDisplayInfo.writeToParcel(out, flags);
-    out.writeInt(sdkVersion);
-    out.writeString(getLanguageTag());
-  }
-
-  DeviceStateProto toProto() {
-    DeviceStateProto.Builder builder = DeviceStateProto.newBuilder();
-    builder.setSdkVersion(sdkVersion);
-    builder.setDefaultDisplayInfo(defaultDisplayInfo.toProto());
-    builder.setLocale(getLanguageTag());
-    return builder.build();
-  }
-
-  private String getLanguageTag() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      return locale.toLanguageTag();
-    } else {
-      return getStringFromLocale(locale);
+    DeviceState(DeviceStateProto fromProto) {
+        sdkVersion = fromProto.getSdkVersion();
+        defaultDisplayInfo = new DisplayInfo(fromProto.getDefaultDisplayInfo());
+        String languageTag = fromProto.getLocale();
+        // Use the default Locale if no locale was recorded in the proto.
+        // This is for backward compatibility.
+        locale = languageTag.isEmpty() ? Locale.getDefault() : getLocaleFromLanguageTag(languageTag);
     }
-  }
 
-  private static Locale getLocaleFromLanguageTag(String languageTag) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      return Locale.forLanguageTag(languageTag);
-    } else {
-      return getLocaleFromString(languageTag);
+    /**
+     * WindowManager#getDefaultDisplay()
+     */
+    public DisplayInfo getDefaultDisplayInfo() {
+        return defaultDisplayInfo;
     }
-  }
 
-  /**
-   * Attempts to produce the same result as {@link Locale#toLanguageTag} for those locales
-   * supported by ATF.
-   * <p>For use with builds prior to LOLLIPOP, where toLanguageTag is not available.
-   */
-  @VisibleForTesting
-  static String getStringFromLocale(Locale locale) {
-    return locale.toString().replace('_', '-');
-  }
-
-  /**
-   * Attempts to produce the same result as {@link Locale#forLanguageTag} for those locales
-   * supported by ATF.
-   * <p>For use with builds prior to LOLLIPOP, where forLanguageTag is not available.
-   */
-  @VisibleForTesting
-  static Locale getLocaleFromString(String str) {
-    List<String> parts = HYPHEN_SPLITTER.splitToList(str);
-    switch (parts.size()) {
-      case 1:
-        return new Locale(parts.get(0));
-      case 2:
-        return new Locale(parts.get(0), parts.get(1));
-      case 3:
-        return new Locale(parts.get(0), parts.get(1), parts.get(2));
-      default:
-        throw new IllegalArgumentException("Unsupported locale string: " + str);
+    /** Build.VERSION#SDK_INT */
+    public int getSdkVersion() {
+        return sdkVersion;
     }
-  }
+
+    /** Gets the locale at the time the device state was captured. */
+    public Locale getLocale() {
+        return locale;
+    }
+
+    DeviceStateProto toProto() {
+        DeviceStateProto.Builder builder = DeviceStateProto.newBuilder();
+        builder.setSdkVersion(sdkVersion);
+        builder.setDefaultDisplayInfo(defaultDisplayInfo.toProto());
+        builder.setLocale(getLanguageTag());
+        return builder.build();
+    }
+
+    private String getLanguageTag() {
+        return locale.toLanguageTag();
+    }
+
+    private static Locale getLocaleFromLanguageTag(String languageTag) {
+        return Locale.forLanguageTag(languageTag);
+    }
+
+    /**
+     * Attempts to produce the same result as {@link Locale#toLanguageTag} for those locales
+     * supported by ATF.
+     * <p>For use with builds prior to LOLLIPOP, where toLanguageTag is not available.
+     */
+    @VisibleForTesting
+    static String getStringFromLocale(Locale locale) {
+        return locale.toString().replace('_', '-');
+    }
+
+    /**
+     * Attempts to produce the same result as {@link Locale#forLanguageTag} for those locales
+     * supported by ATF.
+     * <p>For use with builds prior to LOLLIPOP, where forLanguageTag is not available.
+     */
+    @VisibleForTesting
+    static Locale getLocaleFromString(String str) {
+        List<String> parts = HYPHEN_SPLITTER.splitToList(str);
+        switch (parts.size()) {
+            case 1:
+                return new Locale(parts.get(0));
+            case 2:
+                return new Locale(parts.get(0), parts.get(1));
+            case 3:
+                return new Locale(parts.get(0), parts.get(1), parts.get(2));
+            default:
+                throw new IllegalArgumentException("Unsupported locale string: " + str);
+        }
+    }
 }

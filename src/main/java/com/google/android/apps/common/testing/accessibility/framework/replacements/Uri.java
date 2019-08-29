@@ -17,32 +17,27 @@ package com.google.android.apps.common.testing.accessibility.framework.replaceme
 import java.net.URI;
 
 /**
- * Used as a local replacement for Android's {@link android.net.Uri}
+ * Used as a local replacement for Android's {link android.net.Uri}
  */
-public class Uri implements Replaceable<android.net.Uri> {
+public class Uri implements Replaceable {
 
-  private final URI uri;
+    private final URI uri;
 
-  public Uri(String rfc2396UriString) {
-    uri = URI.create(rfc2396UriString);
-  }
+    public Uri(String rfc2396UriString) {
+        uri = URI.create(rfc2396UriString);
+    }
 
-  /**
-   * @see android.net.Uri#isAbsolute()
-   */
-  public boolean isAbsolute() {
-    return uri.isAbsolute();
-  }
+    /**
+     * see android.net.Uri#isAbsolute()
+     */
+    public boolean isAbsolute() {
+        return uri.isAbsolute();
+    }
 
-  /**
-   * @see android.net.Uri#isRelative()
-   */
-  public boolean isRelative() {
-    return !isAbsolute();
-  }
-
-  @Override
-  public android.net.Uri getAndroidInstance() {
-    return android.net.Uri.parse(uri.toString());
-  }
+    /**
+     * see android.net.Uri#isRelative()
+     */
+    public boolean isRelative() {
+        return !isAbsolute();
+    }
 }
