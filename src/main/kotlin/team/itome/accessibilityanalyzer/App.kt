@@ -11,7 +11,10 @@ import com.google.android.apps.common.testing.accessibility.framework.Accessibil
 import com.google.android.apps.common.testing.accessibility.framework.AccessibilityHierarchyCheck
 import com.google.android.apps.common.testing.accessibility.framework.AccessibilityHierarchyCheckResult
 import com.google.android.apps.common.testing.accessibility.framework.uielement.AccessibilityHierarchy
+import com.google.android.apps.common.testing.accessibility.framework.uielement.ViewHierarchyElement
 import com.google.android.apps.common.testing.accessibility.framework.uielement.proto.AccessibilityHierarchyProtos.AccessibilityHierarchyProto
+import org.im4java.core.ConvertCmd
+import org.im4java.core.IMOperation
 import java.io.File
 import java.io.FileNotFoundException
 import java.util.*
@@ -19,6 +22,12 @@ import java.util.*
 fun main(args: Array<String>) = AccessibilityCheckCommand().main(args)
 
 class AccessibilityCheckCommand : CliktCommand() {
+
+  companion object {
+    private const val FRAME_MARGIN = 16
+    private const val FRAME_STROKE_WIDTH = 8
+  }
+
   private val targetDir by option(
     "--target",
     help = "Target directory that contains accessibility.meta files"
@@ -28,7 +37,8 @@ class AccessibilityCheckCommand : CliktCommand() {
     get() = targetDir.replace("~", System.getProperty("user.home"))
 
   override fun run() {
-    val files = File(targetDirFullPath).listFiles()
+    val dir = File(targetDirFullPath)
+    val files = dir.listFiles()
       ?.filter { Regex("accessibility[0-9]+.meta").matches(it.name) }
       ?: throw FileNotFoundException("No test target file found in $targetDirFullPath")
 
@@ -42,20 +52,26 @@ class AccessibilityCheckCommand : CliktCommand() {
           it.type == AccessibilityCheckResultType.ERROR ||
               it.type == AccessibilityCheckResultType.WARNING
         }
-        .forEach { result ->
+        .forEachIndexed { index, checkResult ->
           @Suppress("UNCHECKED_CAST")
           val checkClass = AccessibilityCheckPreset.getHierarchyCheckForClass(
-            result.sourceCheckClass as Class<out AccessibilityHierarchyCheck>
+            checkResult.sourceCheckClass as Class<out AccessibilityHierarchyCheck>
           )
           println(checkClass.getTitleMessage(Locale.JAPAN))
-          println(result.element)
-          println(checkClass.getMessageForResult(Locale.JAPAN, result))
+          println(checkClass.getMessageForResult(Locale.JAPAN, checkResult))
+
+          val outputProto = checkResult.toProto()
+          val inputFileNumber = file.nameWithoutExtension.removePrefix("accessibility")
+          val outputProtoFile = File(dir, "accessibility${inputFileNumber}_check_result$index.meta")
+          val targetPngFile = File(dir, "$inputFileNumber.png")
+          val outputPngFile = File(dir, "accessibility${inputFileNumber}_check_result$index.png")
+
+          outputProtoFile.createNewFile()
+          outputProtoFile.outputStream().use { outputProto.writeTo(it) }
+          checkResult.element?.let {
+            generateTestResultImage(targetPngFile.absolutePath, outputPngFile.absolutePath, it)
+          }
         }
-//      .forEachIndexed { index, outputProto ->
-//        val file = File(dir, "${inputFile.nameWithoutExtension}_result$index.meta")
-//        file.createNewFile()
-//        file.outputStream().use { outputProto.writeTo(it) }
-//      }
     }
   }
 
@@ -65,5 +81,27 @@ class AccessibilityCheckCommand : CliktCommand() {
     return AccessibilityCheckPreset
       .getAccessibilityHierarchyChecksForPreset(AccessibilityCheckPreset.LATEST)
       .flatMap { it.runCheckOnHierarchy(hierarchy) }
+  }
+
+  private fun generateTestResultImage(
+    targetFilePath: String,
+    outputFilePath: String,
+    view: ViewHierarchyElement
+  ) {
+    val command = ConvertCmd()
+    val operation = IMOperation()
+    val left = view.boundsInScreen.left - FRAME_MARGIN
+    val top = view.boundsInScreen.top - FRAME_MARGIN
+    val right = view.boundsInScreen.right + FRAME_MARGIN
+    val bottom = view.boundsInScreen.bottom + FRAME_MARGIN
+    operation.addImage(targetFilePath)
+    operation.strokewidth(FRAME_STROKE_WIDTH)
+    operation.stroke("#FF0000")
+    operation.draw("line $left,$top $right,$top")
+    operation.draw("line $left,$top $left,$bottom")
+    operation.draw("line $left,$bottom $right,$bottom")
+    operation.draw("line $right,$top $right,$bottom")
+    operation.addImage(outputFilePath)
+    command.run(operation)
   }
 }
