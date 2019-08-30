@@ -38,6 +38,8 @@ message AccessibilityHierarchyCheckResultProto {
   optional ResultTypeProto result_type = 3;
   optional int64 hierarchy_source_id = 4;
   optional MetadataProto metadata = 5;
+  optional string title = 6;
+  optional string message = 7;
 }
 
 // Other than UNKNOWN, this should mirror

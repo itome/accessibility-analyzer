@@ -165,6 +165,12 @@ public class AccessibilityHierarchyCheckResult extends AccessibilityCheckResult 
         if (getElement() != null) {
             builder.setHierarchySourceId(getElement().getCondensedUniqueId());
         }
+        if (getTitleMessage(Locale.JAPAN) != null) {
+            builder.setTitle(getTitleMessage(Locale.JAPAN).toString());
+        }
+        if (getMessage(Locale.JAPAN) != null) {
+            builder.setMessage(getMessage(Locale.JAPAN).toString());
+        }
 
         return builder.build();
     }

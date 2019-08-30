@@ -760,6 +760,34 @@ public final class AccessibilityEvaluationProtos {
          * <code>optional .com.google.android.apps.common.testing.accessibility.framework.proto.MetadataProto metadata = 5;</code>
          */
         com.google.android.apps.common.testing.accessibility.framework.proto.AccessibilityEvaluationProtos.MetadataProto getMetadata();
+
+        /**
+         * <code>optional string title = 6;</code>
+         */
+        boolean hasTitle();
+        /**
+         * <code>optional string title = 6;</code>
+         */
+        java.lang.String getTitle();
+        /**
+         * <code>optional string title = 6;</code>
+         */
+        com.google.protobuf.ByteString
+        getTitleBytes();
+
+        /**
+         * <code>optional string message = 7;</code>
+         */
+        boolean hasMessage();
+        /**
+         * <code>optional string message = 7;</code>
+         */
+        java.lang.String getMessage();
+        /**
+         * <code>optional string message = 7;</code>
+         */
+        com.google.protobuf.ByteString
+        getMessageBytes();
     }
     /**
      * <pre>
@@ -776,6 +804,8 @@ public final class AccessibilityEvaluationProtos {
             AccessibilityHierarchyCheckResultProtoOrBuilder {
         private AccessibilityHierarchyCheckResultProto() {
             sourceCheckClass_ = "";
+            title_ = "";
+            message_ = "";
         }
         private int bitField0_;
         public static final int SOURCE_CHECK_CLASS_FIELD_NUMBER = 1;
@@ -972,6 +1002,108 @@ public final class AccessibilityEvaluationProtos {
             bitField0_ = (bitField0_ & ~0x00000010);
         }
 
+        public static final int TITLE_FIELD_NUMBER = 6;
+        private java.lang.String title_;
+        /**
+         * <code>optional string title = 6;</code>
+         */
+        public boolean hasTitle() {
+            return ((bitField0_ & 0x00000020) == 0x00000020);
+        }
+        /**
+         * <code>optional string title = 6;</code>
+         */
+        public java.lang.String getTitle() {
+            return title_;
+        }
+        /**
+         * <code>optional string title = 6;</code>
+         */
+        public com.google.protobuf.ByteString
+        getTitleBytes() {
+            return com.google.protobuf.ByteString.copyFromUtf8(title_);
+        }
+        /**
+         * <code>optional string title = 6;</code>
+         */
+        private void setTitle(
+                java.lang.String value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            bitField0_ |= 0x00000020;
+            title_ = value;
+        }
+        /**
+         * <code>optional string title = 6;</code>
+         */
+        private void clearTitle() {
+            bitField0_ = (bitField0_ & ~0x00000020);
+            title_ = getDefaultInstance().getTitle();
+        }
+        /**
+         * <code>optional string title = 6;</code>
+         */
+        private void setTitleBytes(
+                com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            bitField0_ |= 0x00000020;
+            title_ = value.toStringUtf8();
+        }
+
+        public static final int MESSAGE_FIELD_NUMBER = 7;
+        private java.lang.String message_;
+        /**
+         * <code>optional string message = 7;</code>
+         */
+        public boolean hasMessage() {
+            return ((bitField0_ & 0x00000040) == 0x00000040);
+        }
+        /**
+         * <code>optional string message = 7;</code>
+         */
+        public java.lang.String getMessage() {
+            return message_;
+        }
+        /**
+         * <code>optional string message = 7;</code>
+         */
+        public com.google.protobuf.ByteString
+        getMessageBytes() {
+            return com.google.protobuf.ByteString.copyFromUtf8(message_);
+        }
+        /**
+         * <code>optional string message = 7;</code>
+         */
+        private void setMessage(
+                java.lang.String value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            bitField0_ |= 0x00000040;
+            message_ = value;
+        }
+        /**
+         * <code>optional string message = 7;</code>
+         */
+        private void clearMessage() {
+            bitField0_ = (bitField0_ & ~0x00000040);
+            message_ = getDefaultInstance().getMessage();
+        }
+        /**
+         * <code>optional string message = 7;</code>
+         */
+        private void setMessageBytes(
+                com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            bitField0_ |= 0x00000040;
+            message_ = value.toStringUtf8();
+        }
+
         public void writeTo(com.google.protobuf.CodedOutputStream output)
                 throws java.io.IOException {
             if (((bitField0_ & 0x00000001) == 0x00000001)) {
@@ -988,6 +1120,12 @@ public final class AccessibilityEvaluationProtos {
             }
             if (((bitField0_ & 0x00000010) == 0x00000010)) {
                 output.writeMessage(5, getMetadata());
+            }
+            if (((bitField0_ & 0x00000020) == 0x00000020)) {
+                output.writeString(6, getTitle());
+            }
+            if (((bitField0_ & 0x00000040) == 0x00000040)) {
+                output.writeString(7, getMessage());
             }
             unknownFields.writeTo(output);
         }
@@ -1016,6 +1154,14 @@ public final class AccessibilityEvaluationProtos {
             if (((bitField0_ & 0x00000010) == 0x00000010)) {
                 size += com.google.protobuf.CodedOutputStream
                         .computeMessageSize(5, getMetadata());
+            }
+            if (((bitField0_ & 0x00000020) == 0x00000020)) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeStringSize(6, getTitle());
+            }
+            if (((bitField0_ & 0x00000040) == 0x00000040)) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeStringSize(7, getMessage());
             }
             size += unknownFields.getSerializedSize();
             memoizedSerializedSize = size;
@@ -1287,6 +1433,98 @@ public final class AccessibilityEvaluationProtos {
                 return this;
             }
 
+            /**
+             * <code>optional string title = 6;</code>
+             */
+            public boolean hasTitle() {
+                return instance.hasTitle();
+            }
+            /**
+             * <code>optional string title = 6;</code>
+             */
+            public java.lang.String getTitle() {
+                return instance.getTitle();
+            }
+            /**
+             * <code>optional string title = 6;</code>
+             */
+            public com.google.protobuf.ByteString
+            getTitleBytes() {
+                return instance.getTitleBytes();
+            }
+            /**
+             * <code>optional string title = 6;</code>
+             */
+            public Builder setTitle(
+                    java.lang.String value) {
+                copyOnWrite();
+                instance.setTitle(value);
+                return this;
+            }
+            /**
+             * <code>optional string title = 6;</code>
+             */
+            public Builder clearTitle() {
+                copyOnWrite();
+                instance.clearTitle();
+                return this;
+            }
+            /**
+             * <code>optional string title = 6;</code>
+             */
+            public Builder setTitleBytes(
+                    com.google.protobuf.ByteString value) {
+                copyOnWrite();
+                instance.setTitleBytes(value);
+                return this;
+            }
+
+            /**
+             * <code>optional string message = 7;</code>
+             */
+            public boolean hasMessage() {
+                return instance.hasMessage();
+            }
+            /**
+             * <code>optional string message = 7;</code>
+             */
+            public java.lang.String getMessage() {
+                return instance.getMessage();
+            }
+            /**
+             * <code>optional string message = 7;</code>
+             */
+            public com.google.protobuf.ByteString
+            getMessageBytes() {
+                return instance.getMessageBytes();
+            }
+            /**
+             * <code>optional string message = 7;</code>
+             */
+            public Builder setMessage(
+                    java.lang.String value) {
+                copyOnWrite();
+                instance.setMessage(value);
+                return this;
+            }
+            /**
+             * <code>optional string message = 7;</code>
+             */
+            public Builder clearMessage() {
+                copyOnWrite();
+                instance.clearMessage();
+                return this;
+            }
+            /**
+             * <code>optional string message = 7;</code>
+             */
+            public Builder setMessageBytes(
+                    com.google.protobuf.ByteString value) {
+                copyOnWrite();
+                instance.setMessageBytes(value);
+                return this;
+            }
+
             // @@protoc_insertion_point(builder_scope:com.google.android.apps.common.testing.accessibility.framework.proto.AccessibilityHierarchyCheckResultProto)
         }
         protected final Object dynamicMethod(
@@ -1320,6 +1558,12 @@ public final class AccessibilityEvaluationProtos {
                             hasHierarchySourceId(), hierarchySourceId_,
                             other.hasHierarchySourceId(), other.hierarchySourceId_);
                     metadata_ = visitor.visitMessage(metadata_, other.metadata_);
+                    title_ = visitor.visitString(
+                            hasTitle(), title_,
+                            other.hasTitle(), other.title_);
+                    message_ = visitor.visitString(
+                            hasMessage(), message_,
+                            other.hasMessage(), other.message_);
                     if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
                             .INSTANCE) {
                         bitField0_ |= other.bitField0_;
@@ -1383,6 +1627,18 @@ public final class AccessibilityEvaluationProtos {
                                         metadata_ = subBuilder.buildPartial();
                                     }
                                     bitField0_ |= 0x00000010;
+                                    break;
+                                }
+                                case 50: {
+                                    String s = input.readString();
+                                    bitField0_ |= 0x00000020;
+                                    title_ = s;
+                                    break;
+                                }
+                                case 58: {
+                                    String s = input.readString();
+                                    bitField0_ |= 0x00000040;
+                                    message_ = s;
                                     break;
                                 }
                             }
