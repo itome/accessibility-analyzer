@@ -3,13 +3,42 @@
  */
 package team.itome.accessibilityanalyzer
 
-class App {
-    val greeting: String
-        get() {
-            return "Hello world."
-        }
-}
+import com.google.android.apps.common.testing.accessibility.framework.AccessibilityCheckResult.AccessibilityCheckResultType
+import com.google.android.apps.common.testing.accessibility.framework.AccessibilityHierarchyCheckResult
+import com.google.android.apps.common.testing.accessibility.framework.checks.SpeakableTextPresentCheck
+import com.google.android.apps.common.testing.accessibility.framework.uielement.AccessibilityHierarchy
+import com.google.android.apps.common.testing.accessibility.framework.uielement.proto.AccessibilityHierarchyProtos.AccessibilityHierarchyProto
+import java.io.File
+
+private val OUTPUT_DIR =
+  "/Users/s04407/OSS/android-sunflower/app/build/outputs/apk/debug/crawl_output/app_firebase_test_lab"
+private val CHECKS = listOf(SpeakableTextPresentCheck())
 
 fun main(args: Array<String>) {
-    println(App().greeting)
+
+  val dir = File(OUTPUT_DIR)
+  dir.listFiles()?.asSequence()
+    ?.filter { Regex("accessibility[0-9]+.meta").matches(it.name) }
+    ?.map { it.inputStream().use { stream -> AccessibilityHierarchyProto.parseFrom(stream) } }
+    ?.map { runAccessibilityChecks(AccessibilityHierarchy.newBuilder(it).build()) }
+    ?.forEach { results ->
+      results
+        .filter {
+          it.type == AccessibilityCheckResultType.ERROR ||
+              it.type == AccessibilityCheckResultType.WARNING
+        }
+        .map { it.toProto() }
+        .forEach { println(it) }
+//        .forEachIndexed { index, outputProto ->
+//          val file = File(dir, "${inputFile.nameWithoutExtension}_result$index.meta")
+//          file.createNewFile()
+//          file.outputStream().use { outputProto.writeTo(it) }
+//        }
+    }
+}
+
+private fun runAccessibilityChecks(
+  hierarchy: AccessibilityHierarchy
+): List<AccessibilityHierarchyCheckResult> {
+  return CHECKS.flatMap { it.runCheckOnHierarchy(hierarchy) }
 }
