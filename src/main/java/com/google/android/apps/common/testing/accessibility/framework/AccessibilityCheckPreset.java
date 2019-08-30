@@ -16,10 +16,17 @@
 
 package com.google.android.apps.common.testing.accessibility.framework;
 
+import com.google.android.apps.common.testing.accessibility.framework.checks.ClassNameCheck;
+import com.google.android.apps.common.testing.accessibility.framework.checks.ClickableSpanCheck;
+import com.google.android.apps.common.testing.accessibility.framework.checks.DuplicateClickableBoundsCheck;
+import com.google.android.apps.common.testing.accessibility.framework.checks.DuplicateSpeakableTextCheck;
+import com.google.android.apps.common.testing.accessibility.framework.checks.EditableContentDescCheck;
+import com.google.android.apps.common.testing.accessibility.framework.checks.RedundantDescriptionCheck;
 import com.google.android.apps.common.testing.accessibility.framework.checks.SpeakableTextPresentCheck;
+import com.google.android.apps.common.testing.accessibility.framework.checks.TouchTargetSizeCheck;
+import com.google.android.apps.common.testing.accessibility.framework.checks.TraversalOrderCheck;
 import com.google.common.collect.ImmutableClassToInstanceMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -51,16 +58,16 @@ public enum AccessibilityCheckPreset {
             CLASS_TO_HIERARCHY_CHECK =
             new ImmutableClassToInstanceMap.Builder<AccessibilityHierarchyCheck>()
                     .put(SpeakableTextPresentCheck.class, new SpeakableTextPresentCheck())
-//                    .put(EditableContentDescCheck.class, new EditableContentDescCheck())
-//                    .put(TouchTargetSizeCheck.class, new TouchTargetSizeCheck())
-//                    .put(DuplicateSpeakableTextCheck.class, new DuplicateSpeakableTextCheck())
+                    .put(EditableContentDescCheck.class, new EditableContentDescCheck())
+                    .put(TouchTargetSizeCheck.class, new TouchTargetSizeCheck())
+                    .put(DuplicateSpeakableTextCheck.class, new DuplicateSpeakableTextCheck())
+                    .put(ClickableSpanCheck.class, new ClickableSpanCheck())
+                    .put(DuplicateClickableBoundsCheck.class, new DuplicateClickableBoundsCheck())
+                    .put(RedundantDescriptionCheck.class, new RedundantDescriptionCheck())
+                    .put(ClassNameCheck.class, new ClassNameCheck())
+                    .put(TraversalOrderCheck.class, new TraversalOrderCheck())
 //                    .put(TextContrastCheck.class, new TextContrastCheck())
-//                    .put(ClickableSpanCheck.class, new ClickableSpanCheck())
-//                    .put(DuplicateClickableBoundsCheck.class, new DuplicateClickableBoundsCheck())
-//                    .put(RedundantDescriptionCheck.class, new RedundantDescriptionCheck())
 //                    .put(ImageContrastCheck.class, new ImageContrastCheck())
-//                    .put(ClassNameCheck.class, new ClassNameCheck())
-//                    .put(TraversalOrderCheck.class, new TraversalOrderCheck())
                     .build();
 
     /**
@@ -95,26 +102,26 @@ public enum AccessibilityCheckPreset {
          */
         /* Checks included in version 1.0 */
         checks.add(CLASS_TO_HIERARCHY_CHECK.get(SpeakableTextPresentCheck.class));
-//        checks.add(CLASS_TO_HIERARCHY_CHECK.get(EditableContentDescCheck.class));
-//        checks.add(CLASS_TO_HIERARCHY_CHECK.get(TouchTargetSizeCheck.class));
-//        checks.add(CLASS_TO_HIERARCHY_CHECK.get(DuplicateSpeakableTextCheck.class));
+        checks.add(CLASS_TO_HIERARCHY_CHECK.get(EditableContentDescCheck.class));
+        checks.add(CLASS_TO_HIERARCHY_CHECK.get(TouchTargetSizeCheck.class));
+        checks.add(CLASS_TO_HIERARCHY_CHECK.get(DuplicateSpeakableTextCheck.class));
 //        checks.add(CLASS_TO_HIERARCHY_CHECK.get(TextContrastCheck.class));
         if (preset == VERSION_1_0_CHECKS) {
             return checks;
         }
 
         /* Checks included in version 2.0 */
-//        checks.add(CLASS_TO_HIERARCHY_CHECK.get(ClickableSpanCheck.class));
-//        checks.add(CLASS_TO_HIERARCHY_CHECK.get(DuplicateClickableBoundsCheck.class));
-//        checks.add(CLASS_TO_HIERARCHY_CHECK.get(RedundantDescriptionCheck.class));
+        checks.add(CLASS_TO_HIERARCHY_CHECK.get(ClickableSpanCheck.class));
+        checks.add(CLASS_TO_HIERARCHY_CHECK.get(DuplicateClickableBoundsCheck.class));
+        checks.add(CLASS_TO_HIERARCHY_CHECK.get(RedundantDescriptionCheck.class));
         if (preset == VERSION_2_0_CHECKS) {
             return checks;
         }
 
         /* Checks included in version 3.0 */
 //        checks.add(CLASS_TO_HIERARCHY_CHECK.get(ImageContrastCheck.class));
-//        checks.add(CLASS_TO_HIERARCHY_CHECK.get(ClassNameCheck.class));
-//        checks.add(CLASS_TO_HIERARCHY_CHECK.get(TraversalOrderCheck.class));
+        checks.add(CLASS_TO_HIERARCHY_CHECK.get(ClassNameCheck.class));
+        checks.add(CLASS_TO_HIERARCHY_CHECK.get(TraversalOrderCheck.class));
         if (preset == VERSION_3_0_CHECKS) {
             return checks;
         }

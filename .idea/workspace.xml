@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a4fb5f02-27f9-439b-914b-389017d9f60b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/AccessibilityCheckPreset.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/AccessibilityCheckPreset.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/uielement/ViewHierarchyElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/google/android/apps/common/testing/accessibility/framework/uielement/ViewHierarchyElement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/team/itome/accessibilityanalyzer/App.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/team/itome/accessibilityanalyzer/App.kt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -83,11 +85,12 @@
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Kotlin" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/kotlin/team/itome/accessibilityanalyzer" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/kotlin/team/itome/accessibilityanalyzer" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -142,7 +145,7 @@
       <workItem from="1567052779481" duration="5538000" />
       <workItem from="1567059468830" duration="4783000" />
       <workItem from="1567069371926" duration="4858000" />
-      <workItem from="1567130697485" duration="1647000" />
+      <workItem from="1567130697485" duration="5169000" />
     </task>
     <servers />
   </component>

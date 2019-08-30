@@ -282,6 +282,24 @@ public class ViewHierarchyElement {
         return className == "android.webkit.WebView";
     }
 
+    public Boolean isTextView() {
+        return className == "android.widget.TextView" ||
+                className == "android.widget.Button" ||
+                className == "android.widget.CheckedTextView" ||
+                className == "android.widget.TextClock" ||
+                className == "android.widget.Chronometer" ||
+                className == "android.widget.DigitalClock" ||
+                className == "android.support.v7.widget.AppCompatTextView" ||
+                className == "androidx.appcompat.widget.AppCompatTextView" ||
+                isEditText();
+    }
+
+    public Boolean isEditText() {
+        return className == "android.widget.EditText" ||
+                className == "android.support.v7.widget.AppCompatEditText" ||
+                className == "androidx.appcompat.widget.AppCompatEditText";
+    }
+
     /**
      */
     public @Nullable SpannableString getContentDescription() {
