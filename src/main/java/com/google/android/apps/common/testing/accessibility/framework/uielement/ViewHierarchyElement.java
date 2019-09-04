@@ -279,25 +279,20 @@ public class ViewHierarchyElement {
     }
 
     public Boolean isWebView() {
-        return className == "android.webkit.WebView";
+        return className != null && className.toString().contains("WebView");
     }
 
     public Boolean isTextView() {
-        return className == "android.widget.TextView" ||
+        return (className != null && className.toString().contains("TextView")) ||
                 className == "android.widget.Button" ||
-                className == "android.widget.CheckedTextView" ||
                 className == "android.widget.TextClock" ||
                 className == "android.widget.Chronometer" ||
                 className == "android.widget.DigitalClock" ||
-                className == "android.support.v7.widget.AppCompatTextView" ||
-                className == "androidx.appcompat.widget.AppCompatTextView" ||
                 isEditText();
     }
 
     public Boolean isEditText() {
-        return className == "android.widget.EditText" ||
-                className == "android.support.v7.widget.AppCompatEditText" ||
-                className == "androidx.appcompat.widget.AppCompatEditText";
+        return className != null && className.toString().contains("EditText");
     }
 
     /**
