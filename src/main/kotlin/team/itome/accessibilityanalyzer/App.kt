@@ -6,10 +6,14 @@ package team.itome.accessibilityanalyzer
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.options.required
+import com.github.ajalt.clikt.parameters.types.int
+import com.google.android.apps.common.testing.accessibility.framework.AccessibilityCheckMetadata.METADATA_KEY_CUSTOMIZED_TOUCH_TARGET_SIZE
 import com.google.android.apps.common.testing.accessibility.framework.AccessibilityCheckPreset
 import com.google.android.apps.common.testing.accessibility.framework.AccessibilityCheckResult.AccessibilityCheckResultType
 import com.google.android.apps.common.testing.accessibility.framework.AccessibilityHierarchyCheck
 import com.google.android.apps.common.testing.accessibility.framework.AccessibilityHierarchyCheckResult
+import com.google.android.apps.common.testing.accessibility.framework.Metadata
+import com.google.android.apps.common.testing.accessibility.framework.checks.TouchTargetSizeCheck
 import com.google.android.apps.common.testing.accessibility.framework.uielement.AccessibilityHierarchy
 import com.google.android.apps.common.testing.accessibility.framework.uielement.ViewHierarchyElement
 import com.google.android.apps.common.testing.accessibility.framework.uielement.proto.AccessibilityHierarchyProtos.AccessibilityHierarchyProto
@@ -33,6 +37,16 @@ class AccessibilityCheckCommand : CliktCommand() {
     help = "Target directory that contains accessibility.meta files"
   ).required()
 
+  private val lang by option(
+    "--lang",
+    help = "Language code to display test result. ex) en, jp"
+  )
+
+  private val minTouchTargetSize by option(
+    "--min-touch-target-size",
+    help = "Minimum touch target size in dp."
+  ).int()
+
   private val targetDirFullPath: String
     get() = targetDir.replace("~", System.getProperty("user.home"))
 
@@ -41,11 +55,12 @@ class AccessibilityCheckCommand : CliktCommand() {
     val files = dir.listFiles()
       ?.filter { Regex("accessibility[0-9]+.meta").matches(it.name) }
       ?: throw FileNotFoundException("No test target file found in $targetDirFullPath")
+    val metadata = createMetadata()
 
     for (file in files) {
       val proto = file.inputStream().use { stream -> AccessibilityHierarchyProto.parseFrom(stream) }
       val hierarchy = AccessibilityHierarchy.newBuilder(proto).build()
-      val results = runAccessibilityChecks(hierarchy)
+      val results = runAccessibilityChecks(hierarchy, metadata)
 
       results
         .filter {
@@ -57,8 +72,9 @@ class AccessibilityCheckCommand : CliktCommand() {
           val checkClass = AccessibilityCheckPreset.getHierarchyCheckForClass(
             checkResult.sourceCheckClass as Class<out AccessibilityHierarchyCheck>
           )
-          println(checkClass.getTitleMessage(Locale.JAPAN))
-          println(checkClass.getMessageForResult(Locale.JAPAN, checkResult))
+          val locale = Locale.getAvailableLocales().find { it.language == lang } ?: Locale.US
+          println(checkClass.getTitleMessage(locale))
+          println(checkClass.getMessageForResult(locale, checkResult))
 
           val outputProto = checkResult.toProto()
           val inputFileNumber = file.nameWithoutExtension.removePrefix("accessibility")
@@ -76,11 +92,18 @@ class AccessibilityCheckCommand : CliktCommand() {
   }
 
   private fun runAccessibilityChecks(
-    hierarchy: AccessibilityHierarchy
+    hierarchy: AccessibilityHierarchy,
+    metadata: Metadata
   ): List<AccessibilityHierarchyCheckResult> {
     return AccessibilityCheckPreset
       .getAccessibilityHierarchyChecksForPreset(AccessibilityCheckPreset.LATEST)
-      .flatMap { it.runCheckOnHierarchy(hierarchy) }
+      .flatMap { it.runCheckOnHierarchy(hierarchy, null, metadata) }
+  }
+
+  private fun createMetadata(): Metadata {
+    return Metadata().apply {
+      minTouchTargetSize?.let { putInt(METADATA_KEY_CUSTOMIZED_TOUCH_TARGET_SIZE, it) }
+    }
   }
 
   private fun generateTestResultImage(
