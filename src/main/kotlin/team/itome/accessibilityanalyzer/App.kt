@@ -124,6 +124,7 @@ class AccessibilityCheckCommand : CliktCommand() {
     operation.draw("line $left,$top $left,$bottom")
     operation.draw("line $left,$bottom $right,$bottom")
     operation.draw("line $right,$top $right,$bottom")
+    operation.resize(360)
     operation.addImage(outputFilePath)
     command.run(operation)
   }
