@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a4fb5f02-27f9-439b-914b-389017d9f60b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/team/itome/accessibilityanalyzer/App.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/team/itome/accessibilityanalyzer/App.kt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -194,7 +193,7 @@
       <workItem from="1567158002016" duration="480000" />
       <workItem from="1567577372697" duration="2311000" />
       <workItem from="1567747243018" duration="5767000" />
-      <workItem from="1568098137797" duration="1177000" />
+      <workItem from="1568098137797" duration="1260000" />
     </task>
     <servers />
   </component>

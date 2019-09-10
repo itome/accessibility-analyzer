@@ -13,7 +13,6 @@ import com.google.android.apps.common.testing.accessibility.framework.Accessibil
 import com.google.android.apps.common.testing.accessibility.framework.AccessibilityHierarchyCheck
 import com.google.android.apps.common.testing.accessibility.framework.AccessibilityHierarchyCheckResult
 import com.google.android.apps.common.testing.accessibility.framework.Metadata
-import com.google.android.apps.common.testing.accessibility.framework.checks.TouchTargetSizeCheck
 import com.google.android.apps.common.testing.accessibility.framework.uielement.AccessibilityHierarchy
 import com.google.android.apps.common.testing.accessibility.framework.uielement.ViewHierarchyElement
 import com.google.android.apps.common.testing.accessibility.framework.uielement.proto.AccessibilityHierarchyProtos.AccessibilityHierarchyProto
